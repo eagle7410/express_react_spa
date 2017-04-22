@@ -1,0 +1,40 @@
+{
+  "name": "system-monitor",
+  "version": "0.1.0",
+  "description": "Collected statistics used memory and cpu.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eagle7410/system-monitor.git"
+  },
+  "keywords": [
+    "system monitor",
+    "memory",
+    "cpu"
+  ],
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "express": "^4.14.1",
+    "moment": "^2.18.1",
+    "mongoose": "^4.9.2",
+    "mongoose-auto-increment": "^5.0.1",
+    "morgan": "^1.8.1",
+    "utils-igor": "^2.0.5"
+  },
+  "author": {
+    "name": "Igor Stcherbina",
+    "email": "verycooleagle@gmail.com",
+    "skype": "eagleeagle7410"
+  },
+  "engines": {
+    "node": ">=7.5.0"
+  },
+  "_id": "system-monitor@0.1.0",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.1",
+    "gulp-cssmin": "^0.1.7",
+    "gulp-minify": "0.0.15",
+    "install": "^0.8.8",
+    "npm": "^4.4.4"
+  }
+}

@@ -1,0 +1,17 @@
+{
+	"server": {
+		"port" : 3001
+	},
+	"db" : {
+		"type" :"mongo",
+		"port" : "localhost",
+		"name" : "systemMonitor",
+		"storeDays" : 12
+	},
+	"users" : [
+		{
+			"login" : "igor",
+			"pass"  : "qwerty"
+		}
+	]
+}
