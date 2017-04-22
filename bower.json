@@ -1,28 +1,26 @@
 {
   "name": "system-monitor",
-  "homepage": "https://github.com/eagle7410/system-monitor.git",
+  "homepage": "https://github.com/eagle7410/express_react_spa.git",
   "authors": [
     "Igor Stcherbina"
   ],
-  "description": "Monitoring free memory and cpu time for server.",
+  "description": "Simple app express reactJS.",
   "keywords": [
-    "Monitoring",
-    "memory",
-    "cpu"
+    "express",
+    "react",
+    "spa"
   ],
   "version": "1.0.0",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eagle7410/system-monitor.git"
+    "url": "https://github.com/eagle7410/express_react_spa.git"
   },
   "bugs": {
-    "url": "https://github.com/eagle7410/system-monitor.git/issues"
+    "url": "https://github.com/eagle7410/express_react_spa.git"
   },
   "dependencies": {
     "jquery": "3.2.1",
-    "bootstrap": "3.3.7",
-    "eonasdan-bootstrap-datetimepicker": "^4.17.47",
-    "chart.js": "^2.5.0"
+    "bootstrap": "3.3.7"
   }
 }

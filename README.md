@@ -20,8 +20,7 @@ Inner text him.
 	"db" : {
 		"type" :"mongo",
 		"port" : "localhost",
-		"name" : "systemMonitor",
-		"storeDays" : 12
+		"name" : "ExpressReactSpa",
 	},
 	"users" : [
 		{
@@ -31,8 +30,6 @@ Inner text him.
 	]
 }
 ```
-Example see statistics.  
-![In work screenshot](https://raw.githubusercontent.com/eagle7410/system-monitor/master/example.jpg)
 ## People
 
 Developer is [Igor Stcherbina](https://github.com/eagle7410)

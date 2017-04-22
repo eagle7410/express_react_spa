@@ -1,20 +1,19 @@
 {
-  "name": "system-monitor",
+  "name": "express_react_spa",
   "version": "0.1.0",
-  "description": "Collected statistics used memory and cpu.",
+  "description": "Simple app express reactJS.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/eagle7410/system-monitor.git"
+    "url": "https://github.com/eagle7410/express_react_spa.git"
   },
   "keywords": [
-    "system monitor",
-    "memory",
-    "cpu"
+    "express",
+    "react",
+    "spa"
   ],
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.14.1",
-    "moment": "^2.18.1",
     "mongoose": "^4.9.2",
     "mongoose-auto-increment": "^5.0.1",
     "morgan": "^1.8.1",
@@ -28,7 +27,7 @@
   "engines": {
     "node": ">=7.5.0"
   },
-  "_id": "system-monitor@0.1.0",
+  "_id": "express_react_spa@0.1.0",
   "devDependencies": {
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",

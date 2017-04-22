@@ -7,7 +7,6 @@ const db = require('./db');
 
 // Models
 let users;
-let stats;
 
 // Connected to db
 db.connect(conf.db)
@@ -16,7 +15,6 @@ db.connect(conf.db)
 	.then(() => {
 		// Models
 		users = db.model('users');
-		stats = db.model('stats');
 		return users.firstUsers(conf.users)
 	})
 	.then(() => {
@@ -28,7 +26,7 @@ db.connect(conf.db)
 
 		// Response static
 		app.use('/static', express.static('static'));
-		app.use('/', express.static('static/app'));
+		// app.use('/', express.static('static/app'));
 
 		// Show request stats in console.
 		app.use(morgan('dev'));
@@ -57,22 +55,8 @@ db.connect(conf.db)
 				.catch(() => res.json({success : false}));
 		});
 
-		app.delete('/user/:login', users.authCheck, (req, res) => {
-			users.removeByLogin(req.params.login)
-				.then(() => res.json({success : true}))
-				.catch(() => res.json({success : false}));
-		});
-
-		app.get('/stats/:from/:to', users.authCheck, (req, res) => {
-			let p = req.params;
-			stats.fromTo(p.from, p.to)
-				.then(r => res.json({stats : r.length ? r : false}))
-				.catch(() => res.json({stats: false}));
-
-		});
-
 		// Run Server
-		const port = conf.server.port;
+		const port = conf.server.port || 3001;
 		app.listen(port, () => console.log(`Server listener ${port}`));
 	})
 	.catch(e => console.log('Error', e));

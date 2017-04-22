@@ -5,13 +5,13 @@
 	"db" : {
 		"type" :"mongo",
 		"port" : "localhost",
-		"name" : "systemMonitor",
+		"name" : "expressReactSpa",
 		"storeDays" : 12
 	},
 	"users" : [
 		{
-			"login" : "igor",
-			"pass"  : "qwerty"
+			"login" : "admin",
+			"pass"  : "test123"
 		}
 	]
 }
