@@ -12,7 +12,7 @@ db.connect(conf.db)
 
 		// Response static
 		app.use('/static', express.static('static'));
-		// app.use('/', express.static('static/app'));
+		app.use('/', express.static('static'));
 
 		// Show request stats in console.
 		app.use(morgan('dev'));
