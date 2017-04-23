@@ -9,7 +9,7 @@ module.exports = {
 				return require('./mongo').init(confDB).then(ok, bad);
 
 			default:
-				throw new Error('No find type conections');
+				throw new Error('No find type connections');
 		}
 	})
 

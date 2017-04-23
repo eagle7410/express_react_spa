@@ -1,17 +1,13 @@
 {
 	"server": {
-		"port" : 3001
+		"port": 3001
 	},
-	"db" : {
-		"type" :"mongo",
-		"port" : "localhost",
-		"name" : "expressReactSpa",
-		"storeDays" : 12
+	"db": {
+		"type": "mongo",
+		"port": "localhost",
+		"name": "expressReactSpa"
 	},
-	"users" : [
-		{
-			"login" : "admin",
-			"pass"  : "test123"
-		}
-	]
+	"mailer": {
+
+	}
 }

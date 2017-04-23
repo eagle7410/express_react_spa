@@ -5,24 +5,10 @@ const conf = require('./conf');
 const app = express();
 const db = require('./db');
 
-// Models
-let users;
-
 // Connected to db
 db.connect(conf.db)
-
-	// Set first users
 	.then(() => {
-		// Models
-		users = db.model('users');
-		return users.firstUsers(conf.users)
-	})
-	.then(() => {
-
-		stats.clear(conf.db.storeDays);
-
-		// Collected data
-		stats.collected();
+		let mail = require('./libs/mail');
 
 		// Response static
 		app.use('/static', express.static('static'));
@@ -31,28 +17,42 @@ db.connect(conf.db)
 		// Show request stats in console.
 		app.use(morgan('dev'));
 
+		// Models
+		let sends = db.model('sends');
+
 		// parse application/json
 		app.use(bodyParser.json());
 
 		// parse application/x-www-form-urlencoded
 		app.use(bodyParser.urlencoded({extended: true}));
 
-		app.post('/login', (req, res) => {
-			users.login(req.body)
-				.then(token => res.json({token : token}))
-				.catch(e => res.json({data : false}));
+		app.post('/send', (req, res) => {
+			let data = req.body;
+			sends.save(data)
+				.then(r => mail.sendData(data))
+				.then(r => {
+					res.json({
+						status: 'ok'
+					})
+				})
+				.catch(e => {
+					res.json({
+						status: 'err',
+						mess: e
+					})
+				});
 		});
 
-		app.get('/users', users.authCheck, (req, res) => {
-			users.all()
-				.then(users => res.json({users : users}))
-				.catch(e => res.json({users : false}));
-		});
-
-		app.post('/user', users.authCheck, (req, res) => {
-			users.create(req.body)
-				.then(() => res.json({success : true}))
-				.catch(() => res.json({success : false}));
+		app.get('/sends', sends.checkAccess, (req, res) => {
+			sends.all()
+				.then(r => {
+					res.json({
+						status: 'ok',
+						data: r
+					})
+				}, e => {
+					res.json({status: 'err'});
+				});
 		});
 
 		// Run Server

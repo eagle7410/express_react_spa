@@ -1,7 +1,7 @@
 {
-	"service": "SERVICE",
+	"service": "gmail",
 	"auth" : {
-		"user" : "USER",
-		"pass" : "PASSWORD"
+		"user" : "verycooleagle@gmail.com",
+		"pass" : "NodeEagleSearch"
 	}
 }

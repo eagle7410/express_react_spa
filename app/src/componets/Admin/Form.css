@@ -1,0 +1,8 @@
+.sr-only {
+	width: auto;
+	height: auto;
+	position: static;
+}
+input {
+	margin: 5px;
+}
