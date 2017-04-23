@@ -37,7 +37,7 @@ const send = (data) => new Promise((ok, bad) => {
 			return ok();
 		}
 
-		console.log(error);
+		console.log(e);
 		bad();
 	});
 
