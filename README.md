@@ -35,6 +35,10 @@ Inner text him.
 	}
 }
 ```
+Page for send email. 
+![In work screenshot](https://raw.githubusercontent.com/eagle7410/express_react_spa/master/img-for-readme/page-send.png)
+Page for see stats. Default login 'admin', password 'test123'.  
+![In work screenshot](https://raw.githubusercontent.com/eagle7410/express_react_spa/master/img-for-readme/page-stats.png)
 ## People
 
 Developer is [Igor Stcherbina](https://github.com/eagle7410)
