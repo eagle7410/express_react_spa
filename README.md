@@ -1,11 +1,11 @@
-# system-monitor
+# express_react_spa
 
-Monitoring free memory and cpu angli time.
+Sends letters to the specified user, to the specified address and texts. It also logs emails.
 
 ## How To Install
 ```bash
-git clone https://github.com/eagle7410/system-monitor.git
-cd system-monitor
+git clone https://github.com/eagle7410/express_react_spa.git
+cd express_react_spa
 npm install
 node server.js
 ```
@@ -15,19 +15,24 @@ Inner text him.
 ```json
 {
 	"server": {
-		"port" : 3001
+		"port": 3001
 	},
-	"db" : {
-		"type" :"mongo",
-		"port" : "localhost",
-		"name" : "ExpressReactSpa",
-	},
-	"users" : [
-		{
-			"login" : "igor",
-			"pass"  : "qwerty"
-		}
-	]
+	"db": {
+		"type": "mongo",
+		"port": "localhost",
+		"name": "expressReactSpa"
+	}
+}
+```
+It also correct mailer config file.  Path to him PROJECT_DIR/conf/mailer.json
+Inner text him.
+```json
+{
+	"service": "SERVICE",
+	"auth" : {
+		"user" : "USER",
+		"pass" : "PASSWORD"
+	}
 }
 ```
 ## People

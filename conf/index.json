@@ -6,8 +6,5 @@
 		"type": "mongo",
 		"port": "localhost",
 		"name": "expressReactSpa"
-	},
-	"mailer": {
-
 	}
 }
