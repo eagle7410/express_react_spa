@@ -1,0 +1,7 @@
+{
+	"service": "SERVICE",
+	"auth" : {
+		"user" : "USER",
+		"pass" : "PASSWORD"
+	}
+}
