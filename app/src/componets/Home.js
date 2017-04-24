@@ -1,23 +1,16 @@
 import React, {Component} from 'react';
 import {keys} from '../utils/Obj';
 import {send} from '../api/Emails';
-
+import {connect} from 'react-redux';
+import {messBadServer } from '../const';
 // Componets
 import LoadIcon from './LoadIcon';
 import Alert from './Alert';
 
-let messBadServer = 'Sorry problem with server. :(';
-
-export default class Home extends Component {
+class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.dataKeys = ['name', 'email', 'text'];
-		this.state = {
-			isSend: false,
-			isSendCreate: false,
-			errors: {},
-			data: {}
-		}
 	}
 
 	handelSubmit(ev) {
@@ -25,12 +18,11 @@ export default class Home extends Component {
 		let errors = {};
 		let that = this;
 
-		if (that.state.isSend) {
+		if (that.props.store.isSend) {
 			return;
 		}
 
-		that.state.data = {};
-		let data = that.state.data;
+		let data = {};
 
 		that.dataKeys.map(key => {
 			let el = that[key];
@@ -45,74 +37,42 @@ export default class Home extends Component {
 		});
 
 		if (keys(errors).length) {
-			return that.setState({
-				errors: errors,
-				isSend: false
-			});
+			return that.props.onSetErrors(errors);
 		}
-		that.setState({isSend: true});
+
+		that.props.onSend(data);
 
 		send(data)
 			.then(r => {
 
 				if (r.status === 'ok') {
-					return that.setState({
-						errors: {},
-						isSendCreate: true,
-						isSend: false
-					});
+					return that.props.onSendSuccess();
 				}
 
-				that.setState({
-					errors: {
-						share: r.mess ? r.mess.replace(/\n/g, '<br>') : messBadServer
-					},
-					isSend: false
-				});
+				that.props.onSetErrors({share: r.mess ? r.mess.replace(/\n/g, '<br>') : messBadServer});
 
 			}, e => {
-				that.setState({
-					errors: {
-						share: messBadServer
-					},
-					isSend: false
-				});
+				that.props.onSetErrors({share: messBadServer});
 				console.log('Err/api/email/send/response', e);
 			})
 	}
 
 	handelReset() {
 		let that = this;
-
 		that.form.reset();
-		that.setState({
-			isSend: false,
-			isSendCreate: false,
-			errors: {},
-			data: {}
-		});
-
+		that.props.onReset();
 	}
 
 	alertData(isHaveError) {
-		let res = {
-			type: '',
-			mess: ''
-		};
 		let that = this;
-		let state = that.state;
+		let res = {type: '', mess: ''};
+		let state = that.props.store;
 		let err = state.errors;
 
 		if (isHaveError && err.share) {
-			res = {
-				type: 'danger',
-				mess: err.share
-			};
+			res = {type: 'danger', mess: err.share};
 		} else if (state.isSendCreate) {
-			res = {
-				type: 'success',
-				mess: 'Thank you for using application!'
-			};
+			res = {type: 'success', mess: 'Thank you for using application!'};
 		}
 
 		return res;
@@ -120,7 +80,7 @@ export default class Home extends Component {
 
 	render() {
 		let that = this;
-		let state = that.state;
+		let state = that.props.store;
 		let isHaveError = state.errors && keys(state.errors).length;
 		let cssClassMessage = {};
 
@@ -195,7 +155,7 @@ export default class Home extends Component {
 					</div>
 					<div className="form-group">
 						<button type="submit" className="btn btn-primary">
-							<LoadIcon isLoad={that.state.isSend}/> Send
+							<LoadIcon isLoad={that.props.store.isSend}/> Send
 						</button>
 					</div>
 				</form>
@@ -203,3 +163,15 @@ export default class Home extends Component {
 		);
 	}
 }
+
+export default connect(
+	state => ({
+		store: state.home
+	}),
+	dispatch => ({
+		onSetErrors: errors => dispatch({type: 'homeSetErrors', data: errors}),
+		onSend: data => dispatch({type: 'homeOnSend', data: data}),
+		onSendSuccess: () => dispatch({type: 'homeOnSendSuccess'}),
+		onReset: () => dispatch({type: 'homeOnReset'})
+	})
+)(Home);

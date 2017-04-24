@@ -2,18 +2,19 @@
  * Created by igor on 11.02.17.
  */
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
-export default class AdminSendsList extends Component {
+class AdminSendsList extends Component {
 
 	render() {
 		let that = this;
 
-		if (!that.props.isGetSends) {
+		if (!that.props.store.isGetSends) {
 			return <div />;
 		}
 
 		let rows = '<tr><td colSpan="3">Empty.</td></tr>';
-		let sends = that.props.sends;
+		let sends = that.props.store.sends;
 
 		if (sends && sends.length) {
 			rows = '';
@@ -41,3 +42,11 @@ export default class AdminSendsList extends Component {
 
 	}
 }
+
+
+export default connect(
+	state => ({
+		store: state.admin
+	}),
+	dispatch => ({})
+)(AdminSendsList);
